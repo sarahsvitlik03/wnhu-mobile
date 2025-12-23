@@ -20,7 +20,7 @@ struct ContentView: View {
         var body: some View {
         ZStack {
             BottomBar(
-                AnyView(Home()),
+                AnyView(Stream()),
                 AnyView(Account()),
             )
             .transition(.opacity)

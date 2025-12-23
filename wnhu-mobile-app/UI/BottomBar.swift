@@ -11,23 +11,23 @@ struct BottomBar: View {
     @EnvironmentObject var app: AppVariables
     @State private var selectedTab = 0
     
-    let HomeView: AnyView
+    let StreamView: AnyView
     let AccountView: AnyView
     
     init(
-        _ HomeView : AnyView,
+        _ StreamView : AnyView,
         _ AccountView : AnyView
     ){
-        self.HomeView = HomeView
+        self.StreamView = StreamView
         self.AccountView = AccountView
     }
     
     var body: some View {
         TabView (selection: $app.selectedTab) {
-            HomeView
+            StreamView
                 .tabItem {
-                    Text("Home")
-                    Image(systemName: "house")
+                    Text("Stream")
+                    Image(systemName: "dot.radiowaves.left.and.right")
                 }
                 .tag(1)
             AccountView
@@ -44,7 +44,7 @@ struct BottomBar: View {
     struct BottomBar_Previews: PreviewProvider {
         static var previews: some View {
             BottomBar(
-                AnyView(Home()),
+                AnyView(Stream()),
                 AnyView(Account())
             )
             .environmentObject(AppVariables())
