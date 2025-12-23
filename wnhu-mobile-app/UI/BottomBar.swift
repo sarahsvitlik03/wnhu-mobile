@@ -27,15 +27,19 @@ struct BottomBar: View {
             HomeView
                 .tabItem {
                     Text("Home")
+                    Image(systemName: "house")
                 }
                 .tag(1)
             AccountView
                 .tabItem {
                     Text("Account")
+                    Image(systemName: "person.circle")
                 }
                 .tag(2)
         }
+        .accentColor(CustomColors.red)
     }
+}
     
     struct BottomBar_Previews: PreviewProvider {
         static var previews: some View {
@@ -45,5 +49,4 @@ struct BottomBar: View {
             )
             .environmentObject(AppVariables())
         }
-    }
 }

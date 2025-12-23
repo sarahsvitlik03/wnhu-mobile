@@ -13,7 +13,7 @@ struct wnhu_mobile_appApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(AppVariables())
         }
     }
 }
