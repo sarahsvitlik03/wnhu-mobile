@@ -10,12 +10,18 @@ import SwiftUI
 struct Stream: View {
     var body: some View {
         VStack {
+                Text("WNHU 88.4")
+                .font(.system(size: 20, weight: .medium))
+                    .kerning(1.0)
+
+                    
+                // OR change this to display the current show or genre, or both            
             //Code for recieiving URL from iTunes API -> Work on later
             AsyncImage(url: URL(string: SongData.song.imageURL)) {
                 image in image.resizable().scaledToFit()
             } placeholder: {
                 Image("bluebird")
-                    .padding(.top, 50)
+                    .padding(.top, 10)
             }
             
             VStack {
@@ -30,19 +36,38 @@ struct Stream: View {
                         .font(.system(size: 20))
                         .padding(.top, 20)
                         .padding(.trailing, 30)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color(red: 0.95, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.0, blue: 0.0), .black],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                     Image(systemName: "play.circle")
                         .font(.system(size: 70))
                         .padding(.top, 20)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color(red: 0.95, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.0, blue: 0.0), .black],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                     Image(systemName: "hand.thumbsup")
                         .font(.system(size: 20))
                         .padding(.top, 20)
                         .padding(.leading, 30)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color(red: 0.95, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.0, blue: 0.0), .black],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                 }
             }
-            // Display square for photo -> Have random image first
-            // Display name name from Song Data
-            // Display artist name
-            // Display play button with like and dislike on the side 
+                // When you press on the play button, it should change into the paused icon
+                // when you press like / dislike, the color fill it plus show an alert
         }
     }
 }
