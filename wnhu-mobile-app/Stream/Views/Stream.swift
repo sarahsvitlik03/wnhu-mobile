@@ -35,7 +35,7 @@ struct Stream: View {
                     Image(systemName: "hand.thumbsdown")
                         .font(.system(size: 20))
                         .padding(.top, 20)
-                        .padding(.trailing, 30)
+                        .padding(.trailing, 50)
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [Color(red: 0.95, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.0, blue: 0.0), .black],
@@ -56,7 +56,7 @@ struct Stream: View {
                     Image(systemName: "hand.thumbsup")
                         .font(.system(size: 20))
                         .padding(.top, 20)
-                        .padding(.leading, 30)
+                        .padding(.leading, 50)
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [Color(red: 0.95, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.0, blue: 0.0), .black],

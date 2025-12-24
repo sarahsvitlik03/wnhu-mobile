@@ -9,6 +9,7 @@ import SwiftUI
 
 class CustomColors {
     static let red = Color(red: 211/255, green: 67/255, blue: 53/255)
+ 
 }
 
 
