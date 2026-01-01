@@ -12,19 +12,47 @@ struct Stream: View {
     @State private var isPlaying = true
     @State private var isThumbsUp = false
     @State private var isThumbsDown = false
+    @State private var isInfoShowing = false
     
     var body: some View {
         VStack {
             VStack {
-                Image(systemName: "info.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20)
-                    .foregroundColor(.secondary)
-                    .shadow(radius: 8)
-                    .padding(.leading, 300)
-                    .padding(.bottom, -10)
+                Button(action: {
+                    isInfoShowing.toggle()
+                }) {
+                    Image(systemName: "info.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20)
+                        .foregroundColor(.secondary)
+                        .shadow(radius: 8)
+                }
+                .padding(.leading, 300)
+                .padding(.bottom, -10)
+                .popover(isPresented: $isInfoShowing) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(SongData.song.title)
+                            .font(.title3.weight(.medium))
+                        
+                        Text("Performed by: \(SongData.song.artist)")
+                            .foregroundColor(.secondary)
+                        
+                        Text("Album: \(SongData.song.album)")
+                            .foregroundColor(.secondary)
+                        Text("Genre: \(SongData.song.album)")
+                            .foregroundColor(.secondary)
+                        Text("Release date: \(SongData.song.album)")
+                            .foregroundColor(.secondary)
+                        Text("Produced by:")
+                            .foregroundColor(.secondary)
+                        Text("Writers:")
+                            .foregroundColor(.secondary)
+                        Text("Label:")
+                            .foregroundColor(.secondary)
+                    }
+                }
             }
+
             Image("wnhu")
                 .resizable()
                 .scaledToFit()
