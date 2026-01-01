@@ -13,7 +13,8 @@ struct Stream: View {
     @State private var isThumbsUp = false
     @State private var isThumbsDown = false
     @State private var isInfoShowing = false
-    
+    @EnvironmentObject var songData: SongData
+
     var body: some View {
         VStack {
             VStack {
@@ -31,17 +32,17 @@ struct Stream: View {
                 .padding(.bottom, -10)
                 .popover(isPresented: $isInfoShowing) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(SongData.song.song)
+                        Text(songData.song.song)
                             .font(.title3.weight(.medium))
                         
-                        Text("Performed by: \(SongData.song.artist)")
+                        Text("Performed by: \(songData.song.artist)")
                             .foregroundColor(.secondary)
                         
-                        Text("Album: \(SongData.song.album)")
+                        Text("Album: \(songData.song.album)")
                             .foregroundColor(.secondary)
-                        Text("Genre: \(SongData.song.album)")
+                        Text("Genre: \(songData.song.album)")
                             .foregroundColor(.secondary)
-                        Text("Release date: \(SongData.song.album)")
+                        Text("Release date: \(songData.song.album)")
                             .foregroundColor(.secondary)
                         Text("Produced by:")
                             .foregroundColor(.secondary)
@@ -60,7 +61,7 @@ struct Stream: View {
                 .shadow(radius: 8)
             // OR change this to display the current show or genre, or both
             //Code for recieiving URL from iTunes API -> Work on later
-            AsyncImage(url: URL(string: SongData.song.imageURL)) { image in
+            AsyncImage(url: URL(string: songData.song.imageURL)) { image in
                 image.resizable().scaledToFit()
             } placeholder: {
                 Image("bluebird")
@@ -74,11 +75,11 @@ struct Stream: View {
             .padding(.bottom, 20)
             
             VStack(spacing: 4) {
-                Text(SongData.song.song)
+                Text(songData.song.song)
                     .font(.title3.weight(.medium))
-                Text(SongData.song.artist)
+                Text(songData.song.artist)
                     .foregroundColor(.secondary)
-                Text(SongData.song.album)
+                Text(songData.song.album)
                     .foregroundColor(.secondary)
                 
                 HStack {
@@ -152,9 +153,14 @@ struct Stream: View {
                 // Get Album cover, song, artist, and album all from iTunes API
             }
         }
+        .task { //update song data
+            await songData.updateFromAPI()
+        }
     }
+
 }
 
 #Preview {
     Stream()
+        .environmentObject(SongData())
 }

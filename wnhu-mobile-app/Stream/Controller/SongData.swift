@@ -8,28 +8,29 @@
 
 import Foundation
 
-struct SongData: {
-    static var song = SongModel(
-        song: "Bluebird",
-        artist: "Lana Del Rey",
-        album: "Unknown",
-        genre: "Alternative",
-        releaseDate: "April 18th, 2025",
+@MainActor
+class SongData: ObservableObject {
+    @Published var song = SongModel( //Using this data right now to search and update phone with new songs. Eventually we wil need to replace w/ icecast
+        song: "Heavy",
+        artist: "The Marias",
+        album: "",
+        genre: "",
+        releaseDate: "",
         duration: 3,
         imageURL: ""
     )
     
-    @MainActor
     func updateFromAPI() async {
         do {
-            if let song = try await iTunesAPI.fetchSongInfo(
-                title: SongData.song.song,
-                artist: SongData.song.artist
+            if let newSong = try await iTunesAPI.fetchSongInfo(
+                title: song.song,
+                artist: song.artist
             ) {
-                SongData.song = song
+                self.song = newSong // replace whole song ^
             }
         } catch {
             print("API error:", error)
         }
     }
+
 }

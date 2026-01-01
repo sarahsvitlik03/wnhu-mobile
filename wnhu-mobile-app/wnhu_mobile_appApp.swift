@@ -10,10 +10,13 @@ import SwiftUI
 @main
 struct wnhu_mobile_appApp: App {
     @StateObject var app = AppVariables()
+    @StateObject var songData = SongData()
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(AppVariables())
+            ContentView()
+                .environmentObject(AppVariables())
+                .environmentObject(songData)
                 .preferredColorScheme(.dark)
         }
     }
