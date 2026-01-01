@@ -8,13 +8,28 @@
 
 import Foundation
 
-struct SongData {
-    static let song = SongModel(
-        id: "1",
-        title: "Bluebird",
+struct SongData: {
+    static var song = SongModel(
+        song: "Bluebird",
         artist: "Lana Del Rey",
         album: "Unknown",
-        duration: "3:45",
+        genre: "Alternative",
+        releaseDate: "April 18th, 2025",
+        duration: 3,
         imageURL: ""
     )
+    
+    @MainActor
+    func updateFromAPI() async {
+        do {
+            if let song = try await iTunesAPI.fetchSongInfo(
+                title: SongData.song.song,
+                artist: SongData.song.artist
+            ) {
+                SongData.song = song
+            }
+        } catch {
+            print("API error:", error)
+        }
+    }
 }

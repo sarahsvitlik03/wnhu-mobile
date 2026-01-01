@@ -7,11 +7,23 @@
 
 import Foundation
 
-struct SongModel: Codable {
-    var id: String
-    var title: String
-    var artist: String
-    var album: String
-    var duration: String
-    var imageURL: String
+struct SongModel: Identifiable, Codable {
+    let id = UUID()
+    let song: String
+    let artist: String
+    let album: String
+    let genre: String
+    let releaseDate: String
+    let duration: Int
+    let imageURL: String
+
+    enum CodingKeys: String, CodingKey {
+        case song = "trackName"
+        case artist = "artistName"
+        case album = "collectionName"
+        case genre = "primaryGenreName"
+        case releaseDate
+        case duration = "trackTimeMillis"
+        case imageURL = "artworkUrl100"
+    }
 }

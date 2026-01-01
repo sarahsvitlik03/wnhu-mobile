@@ -31,7 +31,7 @@ struct Stream: View {
                 .padding(.bottom, -10)
                 .popover(isPresented: $isInfoShowing) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(SongData.song.title)
+                        Text(SongData.song.song)
                             .font(.title3.weight(.medium))
                         
                         Text("Performed by: \(SongData.song.artist)")
@@ -74,7 +74,7 @@ struct Stream: View {
             .padding(.bottom, 20)
             
             VStack(spacing: 4) {
-                Text(SongData.song.title)
+                Text(SongData.song.song)
                     .font(.title3.weight(.medium))
                 Text(SongData.song.artist)
                     .foregroundColor(.secondary)
