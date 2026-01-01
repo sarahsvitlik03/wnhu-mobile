@@ -40,9 +40,9 @@ struct Stream: View {
                             .foregroundColor(.secondary)
                         Text("Genre: \(songData.song.genre)")
                             .foregroundColor(.secondary)
-                        Text("Release date: \(songData.song.releaseDate)")
+                        Text("Release date: \(songData.song.formattedReleaseDate)")
                             .foregroundColor(.secondary)
-                        Text("Duration: \(songData.song.duration)")
+                        Text("Duration: \(songData.song.formattedDuration)")
                             .foregroundColor(.secondary)
 
                     }
