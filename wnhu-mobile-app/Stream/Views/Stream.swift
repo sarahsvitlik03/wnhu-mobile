@@ -56,11 +56,10 @@ struct Stream: View {
                 .frame(width: 100)
                 .shadow(radius: 8)
             // OR change this to display the current show or genre, or both
-            //Code for recieiving URL from iTunes API -> Work on later
             AsyncImage(url: URL(string: songData.song.highResArtwork)) { image in
-                image.resizable().scaledToFit()
+                image.resizable().scaledToFit() //get image from itunes
             } placeholder: {
-                Image("bluebird")
+                Image("")
                     .resizable()
                     .scaledToFit()
             }
@@ -99,10 +98,8 @@ struct Stream: View {
                                 )
                             )
                     } .padding (.leading, 70)
-
                     Spacer(minLength: 24)
 
-                    // Play/Pause (center)
                     Button(action: {
                         isPlaying.toggle()
                     }) {
@@ -122,7 +119,6 @@ struct Stream: View {
 
                     Spacer(minLength: 24)
 
-                    // Thumbs Up
                     Button(action: {
                         isThumbsUp.toggle()
                         if isThumbsDown {
@@ -146,12 +142,10 @@ struct Stream: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.top, 20)
                 .padding(.bottom, 25)
-                //.padding(.leading, 5)
                 // Connect iTunes API to this project, no icecast yet, but just feed it the song name from the songData file for now.
-                // Get Album cover, song, artist, and album all from iTunes API
             }
         }
-        .task { //update song data
+        .task { //update song data for each new song
             await songData.updateFromAPI()
         }
     }
