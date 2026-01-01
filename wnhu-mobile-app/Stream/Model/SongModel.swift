@@ -22,8 +22,14 @@ struct SongModel: Identifiable, Codable {
         case artist = "artistName"
         case album = "collectionName"
         case genre = "primaryGenreName"
-        case releaseDate
+        case releaseDate = "releaseDate"
         case duration = "trackTimeMillis"
         case imageURL = "artworkUrl100"
+    }
+}
+
+extension SongModel {
+    var highResArtwork: String {
+        imageURL.replacingOccurrences(of: "100x100", with: "600x600")
     }
 }
