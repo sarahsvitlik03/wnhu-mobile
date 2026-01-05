@@ -16,3 +16,19 @@ struct Account: View {
 #Preview {
     Account()
 }
+
+
+/* Notes for next time
+ *
+ *   Circle at the top with picture of a person, name + unh email
+ *   Pull from UserModel -> Set up for global use
+ *   Have name, email, again
+ *   Have liked songs be a pop up
+ *   Account settings section
+ *       Change name
+ *       Change password
+ *       Log out
+ *
+ *
+ 
+ */

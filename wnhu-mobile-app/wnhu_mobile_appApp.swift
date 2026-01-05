@@ -18,6 +18,7 @@ struct wnhu_mobile_appApp: App {
                 .environmentObject(AppVariables())
                 .environmentObject(songData)
                 .preferredColorScheme(.dark)
+                .environmentObject(SongData())
         }
     }
 }

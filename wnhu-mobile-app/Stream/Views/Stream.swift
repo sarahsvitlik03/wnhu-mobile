@@ -14,6 +14,7 @@ struct Stream: View {
     @State private var isThumbsDown = false
     @State private var isInfoShowing = false
     @EnvironmentObject var songData: SongData
+    @StateObject private var radio = RadioPlayer() //for pause/play buttons
 
     var body: some View {
         VStack {
@@ -78,7 +79,8 @@ struct Stream: View {
                     .foregroundColor(.secondary)
                 
                 HStack(alignment: .center) {
-                    // Thumbs Down
+                    
+                    // Thumbs Down Button
                     Button(action: {
                         isThumbsDown.toggle()
                         if isThumbsUp {
@@ -100,9 +102,18 @@ struct Stream: View {
                     } .padding (.leading, 70)
                     Spacer(minLength: 24)
 
+                    //Pause/Play Button
                     Button(action: {
                         isPlaying.toggle()
-                    }) {
+                        if isPlaying == true {
+                            radio.startLocalMP3()
+                        }
+                        else {
+                            radio.pause()
+                        }
+                        
+                        print("stream starting")
+                     }) {
                         Image(systemName: isPlaying ? "play.circle" : "pause.circle")
                             .font(.system(size: 70))
                             .foregroundStyle(
@@ -118,7 +129,8 @@ struct Stream: View {
                     }
 
                     Spacer(minLength: 24)
-
+                    
+                    //Thumbs Up Button
                     Button(action: {
                         isThumbsUp.toggle()
                         if isThumbsDown {
@@ -154,5 +166,6 @@ struct Stream: View {
 
 #Preview {
     Stream()
+        .environmentObject(SongData())
         .environmentObject(SongData())
 }
