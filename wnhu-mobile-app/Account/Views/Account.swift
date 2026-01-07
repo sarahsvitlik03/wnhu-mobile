@@ -32,7 +32,6 @@ struct Account: View {
                 .padding(.top, 30)
 
 
-            
             Text(fullName)
                 .padding(.top, 5)
                 .font(.title3.weight(.medium))
@@ -45,7 +44,22 @@ struct Account: View {
                 .frame(height: 1)
                 .background(Color.white.opacity(0.3))
                 .padding(.horizontal, 40)
-                .padding(.bottom, 450)
+                .padding(.bottom, 20)
+            
+            HStack {
+                Image(systemName: "hand.thumbsup.fill")
+                    .font(.system(size: 25))
+                    .foregroundColor(.white)
+                    .padding(.trailing, 20 )
+                    .padding(.leading, 25 )
+                Text("Liked Songs")
+                    .font(.system(size: 22))
+
+            }
+            .frame(maxWidth: 350, maxHeight: 100, alignment: .leading)
+            .background( RoundedRectangle(cornerRadius: 16) .fill(Color.red.opacity(0.1)) )
+            
+                .padding(.bottom, 200)
 
         }
     }
