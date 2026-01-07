@@ -5,7 +5,7 @@
 //  Created by Sarah Svitlik on 1/1/26.
 //
 
-struct UserProfile {
+struct UserModel {
     var firstName: String
     var lastName: String
     var username: String

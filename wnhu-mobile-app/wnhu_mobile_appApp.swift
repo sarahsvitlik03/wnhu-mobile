@@ -11,6 +11,7 @@ import SwiftUI
 struct wnhu_mobile_appApp: App {
     @StateObject var app = AppVariables()
     @StateObject var songData = SongData()
+    @StateObject var userData = UserData()
     
     var body: some Scene {
         WindowGroup {
@@ -18,7 +19,7 @@ struct wnhu_mobile_appApp: App {
                 .environmentObject(AppVariables())
                 .environmentObject(songData)
                 .preferredColorScheme(.dark)
-                .environmentObject(SongData())
+                .environmentObject(userData)
         }
     }
 }

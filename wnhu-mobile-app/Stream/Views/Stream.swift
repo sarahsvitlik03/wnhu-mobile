@@ -167,5 +167,4 @@ struct Stream: View {
 #Preview {
     Stream()
         .environmentObject(SongData())
-        .environmentObject(SongData())
 }
