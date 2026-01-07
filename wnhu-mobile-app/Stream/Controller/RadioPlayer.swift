@@ -12,19 +12,19 @@ class RadioPlayer: ObservableObject {
     @Published var isPlaying: Bool = false
     private var player: AVPlayer?
     
-    func startLocalMP3() {
+    func startMP3() {
         if let url = Bundle.main.url(forResource: "Heavy", withExtension: "mp3") {
             player = AVPlayer(url: url)
             player?.play()
             isPlaying = true
         } else {
-            print("MP3 not found in bundle")
+            print("MP3 not found")
         }
     }
     
     /*  Use Later for Icecast stream
     func startStream () {
-        guard let url = URL(string: "https://www.youtube.com/watch?v=1BCqCgamowo") else {return}
+        guard let url = URL(string: "icecast-stream-here") else {return}
         player = AVPlayer (url: url)
         player?.play()
         isPlaying = true

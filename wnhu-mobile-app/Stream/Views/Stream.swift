@@ -106,7 +106,7 @@ struct Stream: View {
                     Button(action: {
                         isPlaying.toggle()
                         if isPlaying == true {
-                            radio.startLocalMP3()
+                            radio.startMP3()
                         }
                         else {
                             radio.pause()
