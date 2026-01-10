@@ -7,7 +7,14 @@ class UserData: ObservableObject {
         lastName: "Svitlik",
         username: "sarahsvitlik",
         email: "ssvit1@unh.newhaven.edu",
-        joinedDate: "01/05/2026"
+        joinedDate: "01/05/2026",
     )
-}
+    
+    @Published var songs: [LikedSongModel] = [
+        LikedSongModel(songName: "Heavy", artistName: "The Marias"),
+        LikedSongModel(songName: "No One Noticed", artistName: "The Marias"),
+        LikedSongModel(songName: "Some Kind of Angel", artistName: "Georgia Gets By"),
+        LikedSongModel(songName: "Older", artistName: "Searows")
+    ]
 
+}
