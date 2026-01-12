@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+/* Make this the firts page to the app -> Verify user and login */
+
 struct Login: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Login to WNHU 88.4")
+            Button("Sign in") {
+                //Login user
+                // go to outlook authetnication
+            }
+        }
     }
 }
 

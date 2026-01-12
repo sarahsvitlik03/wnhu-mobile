@@ -1,0 +1,15 @@
+{
+  "originHash" : "2a5126cbfcc6e3ce5d5314f08f42a0d2d88d61ecff3b4ac353e67749bcee1113",
+  "pins" : [
+    {
+      "identity" : "microsoft-authentication-library-for-objc?utm_source=copilot.com",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AzureAD/microsoft-authentication-library-for-objc?utm_source=copilot.com",
+      "state" : {
+        "revision" : "09c275ada2236a834b981f6a4d5ecb491b576d6c",
+        "version" : "2.7.0"
+      }
+    }
+  ],
+  "version" : 3
+}

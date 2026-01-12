@@ -84,7 +84,7 @@ struct Account: View {
                         }
                     }
                 }
-                .frame(maxWidth: 375, maxHeight: 100, alignment: .leading)
+                .frame(maxWidth: 350, maxHeight: 100, alignment: .leading)
                 .background(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .fill(Color.white.opacity(0.06))
@@ -108,7 +108,7 @@ struct Account: View {
             }
             .padding(.horizontal, 25)
             .padding(.vertical, 20)
-            .frame(maxWidth: 375, alignment: .leading)
+            .frame(maxWidth: 350, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .fill(Color.white.opacity(0.06))
