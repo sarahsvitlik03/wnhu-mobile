@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+ 
 /* Make this the firts page to the app -> Verify user and login */
 
 struct Login: View {

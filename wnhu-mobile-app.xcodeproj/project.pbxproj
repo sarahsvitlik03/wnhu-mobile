@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		50DD49332F15862A00A2894B /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 50DD49322F15862A00A2894B /* MSAL */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		50744AFA2EFB28BC005071F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -54,11 +58,21 @@
 			);
 			target = 50744B022EFB28BC005071F1 /* wnhu-mobile-appUITests */;
 		};
+		50DD49382F159A7900A2894B /* Exceptions for "wnhu-mobile-app" folder in "wnhu-mobile-app" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 50744AEB2EFB28BA005071F1 /* wnhu-mobile-app */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		50744AEE2EFB28BA005071F1 /* wnhu-mobile-app */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				50DD49382F159A7900A2894B /* Exceptions for "wnhu-mobile-app" folder in "wnhu-mobile-app" target */,
+			);
 			path = "wnhu-mobile-app";
 			sourceTree = "<group>";
 		};
@@ -79,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DD49332F15862A00A2894B /* MSAL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +119,7 @@
 			children = (
 				50744B272EFB28DE005071F1 /* tests */,
 				50744AEE2EFB28BA005071F1 /* wnhu-mobile-app */,
+				50DD49312F15862A00A2894B /* Frameworks */,
 				50744AED2EFB28BA005071F1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +132,13 @@
 				50744B032EFB28BC005071F1 /* wnhu-mobile-appUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		50DD49312F15862A00A2894B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +162,7 @@
 			);
 			name = "wnhu-mobile-app";
 			packageProductDependencies = (
+				50DD49322F15862A00A2894B /* MSAL */,
 			);
 			productName = "wnhu-mobile-app";
 			productReference = 50744AEC2EFB28BA005071F1 /* wnhu-mobile-app.app */;
@@ -419,8 +443,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AMW9FARQ5B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "wnhu-mobile-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,8 +472,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AMW9FARQ5B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "wnhu-mobile-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -585,6 +613,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50DD49322F15862A00A2894B /* MSAL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50DD492C2F15840A00A2894B /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
+			productName = MSAL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50744AE42EFB28BA005071F1 /* Project object */;
 }
