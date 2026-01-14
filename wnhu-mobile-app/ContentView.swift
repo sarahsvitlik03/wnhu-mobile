@@ -15,22 +15,21 @@ class AppVariables: ObservableObject {
 
 struct ContentView: View {
     @EnvironmentObject var appVariables: AppVariables
-    
-        var body: some View {
-            
-            ZStack {
-                if appVariables.isLoggedIn == true{
-                    BottomBar(
-                        AnyView(Stream()),
-                        AnyView(Account()),
-                    )
+
+    var body: some View {
+        
+        ZStack {
+            if appVariables.isLoggedIn {
+                BottomBar(
+                    AnyView(Stream()),
+                    AnyView(Account())
+                )
+                .transition(.opacity)
+            } else if appVariables.showLoginPage {
+                Login()
                     .transition(.opacity)
-                }
-                else if appVariables.showLoginPage {
-                    AnyView(Login())
-                        .transition(.opacity)
-                }
             }
+        }
     }
 }
 
