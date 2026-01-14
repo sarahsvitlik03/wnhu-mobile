@@ -18,6 +18,10 @@ struct wnhu_mobile_appApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(AppVariables())
+                .environmentObject(songData)
+                .preferredColorScheme(.dark)
+                .environmentObject(userData)
+                
         }
     }
 }
