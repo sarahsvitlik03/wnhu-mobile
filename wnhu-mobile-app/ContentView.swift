@@ -9,22 +9,28 @@ import SwiftUI
 
 class AppVariables: ObservableObject {
     @Published var selectedTab: Int = 0
-    // @Published var isLoggedIn: Bool = false
-    // @Published var isSignedOut: Bool = false
+    @Published var isLoggedIn: Bool = false
+    @Published var showLoginPage: Bool = true
 }
-
 
 struct ContentView: View {
     @EnvironmentObject var appVariables: AppVariables
-        
+    
         var body: some View {
-        ZStack {
-            BottomBar(
-                AnyView(Stream()),
-                AnyView(Account()),
-            )
-            .transition(.opacity)
-        }
+            
+            ZStack {
+                if appVariables.isLoggedIn == true{
+                    BottomBar(
+                        AnyView(Stream()),
+                        AnyView(Account()),
+                    )
+                    .transition(.opacity)
+                }
+                else if appVariables.showLoginPage {
+                    AnyView(Login())
+                        .transition(.opacity)
+                }
+            }
     }
 }
 

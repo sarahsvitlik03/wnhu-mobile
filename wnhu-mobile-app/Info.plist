@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>msauthv2</string>
+		<string>msauthv3</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -9,10 +14,9 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>msauth.stationengine-wnhu.wnhu-mobile-app://auth</string>
+				<string>msauth.stationengine-wnhu.wnhu-mobile-app</string>
 			</array>
 		</dict>
-		<dict/>
 	</array>
 </dict>
 </plist>

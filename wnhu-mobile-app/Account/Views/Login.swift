@@ -14,7 +14,7 @@ struct Login: View {
     var body: some View {
         VStack {
             Text("Login to WNHU 88.4")
-            Button(action: {
+                Button(action: {
                     auth.signIn()
         }) {
             Text("Sign in with Microsoft")
