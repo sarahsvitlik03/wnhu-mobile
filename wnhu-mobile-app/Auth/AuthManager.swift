@@ -33,6 +33,35 @@ class AuthManager {
 
         self.applicationContext = try MSALPublicClientApplication(configuration: config)
     }
+    
+    func signIn(completion: @escaping (Result<MSALResult, Error>) -> Void) {
+        guard let rootVC = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .flatMap({ $0.windows })
+            .first(where: { $0.isKeyWindow })?
+            .rootViewController else {
+            print("No root view controller found")
+            return
+        }
+
+        let webParams = MSALWebviewParameters(authPresentationViewController: rootVC)
+        let params = MSALInteractiveTokenParameters(
+            scopes: Configuration.kScopes,
+            webviewParameters: webParams
+        )
+
+        applicationContext?.acquireToken(with: params) { result, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            if let result = result {
+                completion(.success(result))
+            }
+        }
+    }
+
+
     /*  Write sign in function */
     /* connect button with sign in authmanager*/
 }
