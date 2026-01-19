@@ -17,7 +17,7 @@ struct wnhu_mobile_appApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(AppVariables())
+                .environmentObject(app)
                 .environmentObject(songData)
                 .preferredColorScheme(.dark)
                 .environmentObject(userData)

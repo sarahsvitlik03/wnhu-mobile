@@ -17,7 +17,6 @@ struct ContentView: View {
     @EnvironmentObject var appVariables: AppVariables
 
     var body: some View {
-        
         ZStack {
             if appVariables.isLoggedIn {
                 BottomBar(
@@ -25,7 +24,7 @@ struct ContentView: View {
                     AnyView(Account())
                 )
                 .transition(.opacity)
-            } else if appVariables.showLoginPage {
+            } else {
                 Login()
                     .transition(.opacity)
             }
