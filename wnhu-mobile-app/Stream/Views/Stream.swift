@@ -60,7 +60,7 @@ struct Stream: View {
             AsyncImage(url: URL(string: songData.song.highResArtwork)) { image in
                 image.resizable().scaledToFit() //get image from itunes
             } placeholder: {
-                Image(systemName: "photo")
+                Image(songData.song.highResArtwork)
                     .resizable()
                     .scaledToFit()
             }
