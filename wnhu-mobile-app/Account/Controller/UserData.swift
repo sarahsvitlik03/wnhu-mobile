@@ -5,11 +5,7 @@ class UserData: ObservableObject {
     @Published var user = UserModel (
         firstName: "Sarah",
         lastName: "Svitlik",
-        username: "sarahsvitlik",
         email: "s@unh.newhaven.edu",
-        joinedDate: "01/05/2026",
-        isUNHStudent: true,
-        gender: "Female"
     )
     
     @Published var songs: [LikedSongModel] = [

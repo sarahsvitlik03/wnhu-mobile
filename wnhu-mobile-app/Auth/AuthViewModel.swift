@@ -19,10 +19,9 @@ class AuthViewModel: ObservableObject {
                     let email = msalResult.account.username ?? ""
                     
                     userData.user.email = email
-                    userData.user.username = email
-                    userData.user.firstName = ""
-                    userData.user.lastName = ""
-                    userData.user.joinedDate = "01/14/2026"
+                    userData.user.firstName = "Sarah"
+                    userData.user.lastName = "Svitlik"
+                    
                     
                     appVariables.isLoggedIn = true
                     appVariables.showLoginPage = false
