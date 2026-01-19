@@ -16,6 +16,7 @@ struct Account: View {
     
     var body: some View {
         VStack {
+            // Profile pic
             Image(systemName: "person.circle.fill")
                 .resizable()
                 .foregroundStyle(

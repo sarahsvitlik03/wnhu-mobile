@@ -6,7 +6,7 @@ class UserData: ObservableObject {
         firstName: "Sarah",
         lastName: "Svitlik",
         username: "sarahsvitlik",
-        email: "ssvit1@unh.newhaven.edu",
+        email: "s@unh.newhaven.edu",
         joinedDate: "01/05/2026",
         isUNHStudent: true,
         gender: "Female"

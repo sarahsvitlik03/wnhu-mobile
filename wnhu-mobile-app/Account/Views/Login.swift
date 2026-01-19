@@ -11,12 +11,13 @@ import SwiftUI
 struct Login: View {
     @EnvironmentObject var auth: AuthViewModel
     @EnvironmentObject var appVariables: AppVariables
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         VStack {
             Text("Login to WNHU 88.4")
                 Button(action: {
-                    auth.signIn(appVariables: appVariables)
+                    auth.signIn(appVariables: appVariables, userData: userData)
         }) {
             Text("Sign in with Microsoft")
             }
