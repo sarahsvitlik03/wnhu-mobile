@@ -14,7 +14,5 @@ class UserData: ObservableObject {
         LikedSongModel(songName: "Some Kind of Angel", artistName: "Georgia Gets By"),
         LikedSongModel(songName: "Older", artistName: "Searows"),
         LikedSongModel(songName: "Bluebird", artistName: "Lana Del Rey")
-
     ]
-
 }
