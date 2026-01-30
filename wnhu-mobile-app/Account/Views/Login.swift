@@ -20,6 +20,9 @@ struct Login: View {
                     auth.signIn(appVariables: appVariables, userData: userData)
         }) {
             Text("Sign in with Microsoft")
+            /* I need to add a database check here, where if the user does not have an entry in our database, it will go to the profile setup page */
+            
+
             }
         }
     }
@@ -28,3 +31,5 @@ struct Login: View {
 #Preview {
     Login()
 }
+
+/* Function to check user exists */

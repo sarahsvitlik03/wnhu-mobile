@@ -23,13 +23,42 @@ class AuthViewModel: ObservableObject {
                     userData.user.lastName = "Svitlik"
                     
                     
-                    appVariables.isLoggedIn = true
-                    appVariables.showLoginPage = false
+                     
                     
+                    /* Check backend if user exists */
+                    self.checkIfUserExists(email: email, completion: { exists in
+                        if exists {
+                            appVariables.isLoggedIn = true
+                            appVariables.showLoginPage = false
+                        } else {
+                            appVariables.showProfileSetup = true
+                        }
+                    })
+
                 case .failure(let error):
                     print("Sign-in error: \(error)")
                 }
             }
         }
     }
+    
+    /* Checks backend if the user already exists*/
+    func checkIfUserExists (email: String, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "http://127.0.0.1:3000/checkUser") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body = ["email": email]
+        request.httpBody = try? JSONEncoder().encode(body)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+            let exists = (String(data: data, encoding: .utf8) == "exists")
+            completion (exists)
+        } .resume()
+        
+    }
 }
+

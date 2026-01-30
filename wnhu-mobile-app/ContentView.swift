@@ -11,6 +11,7 @@ class AppVariables: ObservableObject {
     @Published var selectedTab: Int = 0
     @Published var isLoggedIn: Bool = false
     @Published var showLoginPage: Bool = true
+    @Published var showProfileSetup: Bool = false
 }
 
 struct ContentView: View {
@@ -24,9 +25,12 @@ struct ContentView: View {
                     AnyView(Account())
                 )
                 .transition(.opacity)
-            } else {
+            } else if appVariables.showLoginPage == true {
                 Login()
                     .transition(.opacity)
+            }
+            else if appVariables.showProfileSetup == true {
+                ProfileSetup()
             }
         }
     }

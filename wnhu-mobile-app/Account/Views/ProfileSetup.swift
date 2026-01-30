@@ -52,6 +52,19 @@ struct ProfileSetup: View {
             .background(Color.white)
             .cornerRadius(20)
         }
+        HStack {
+            Text("Age:")
+            Picker("Age", selection: $age) {
+                ForEach(13...100, id: \.self) { number in
+                    Text("\(number)").tag(number)
+                }
+            }
+            .pickerStyle(.menu)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(20)
+        }
+
         Button(action: {
             print("Button Press")
         }) {
@@ -64,4 +77,4 @@ struct ProfileSetup: View {
     ProfileSetup()
 }
 
-/* Set up profile details and then send to MySQL backend + update app with firstName and Lastname */
+/* Create a function that sends JSON data of the state variables after pressing create account */
