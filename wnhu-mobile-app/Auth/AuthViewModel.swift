@@ -21,17 +21,17 @@ class AuthViewModel: ObservableObject {
                     userData.user.email = email
                     userData.user.firstName = "Sarah"
                     userData.user.lastName = "Svitlik"
-                    
-                    
-                     
-                    
+                
                     /* Check backend if user exists */
                     self.checkIfUserExists(email: email, completion: { exists in
-                        if exists {
-                            appVariables.isLoggedIn = true
-                            appVariables.showLoginPage = false
-                        } else {
-                            appVariables.showProfileSetup = true
+                        DispatchQueue.main.async {
+                            if exists {
+                                appVariables.isLoggedIn = true
+                                appVariables.showLoginPage = false
+                            } else {
+                                appVariables.showProfileSetup = true
+                                appVariables.showLoginPage = false
+                            }
                         }
                     })
 
@@ -56,7 +56,9 @@ class AuthViewModel: ObservableObject {
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
             let exists = (String(data: data, encoding: .utf8) == "exists")
-            completion (exists)
+            DispatchQueue.main.async {
+                completion(exists)
+            }
         } .resume()
         
     }

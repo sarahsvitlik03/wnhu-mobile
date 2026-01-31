@@ -19,14 +19,14 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            if appVariables.isLoggedIn {
+            if appVariables.isLoggedIn { // If logged in == true then show
                 BottomBar(
                     AnyView(Stream()),
                     AnyView(Account())
                 )
                 .transition(.opacity)
             } else if appVariables.showLoginPage == true {
-                Login()
+                Login() // if show login page is true, the show. Which it is at the start
                     .transition(.opacity)
             }
             else if appVariables.showProfileSetup == true {
