@@ -13,6 +13,10 @@ struct ProfileSetup: View {
     @State var isUNHStudent: Bool = false
     @State var age: Int = 0
     @State var gender: String = ""
+    @State var isMobile: Bool = true
+    @EnvironmentObject var userData: UserData
+    @State private var navigateToStream = false
+
     
     var body: some View {
         VStack {
@@ -28,13 +32,13 @@ struct ProfileSetup: View {
                 .padding()
                 .background(Color.white)
                 .cornerRadius(20)
-                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
             
             TextField("Last Name", text: $lastName)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(20)
-                .autocapitalization(.none)
+                .textInputAutocapitalization(.never)
             
             Toggle("UNH Student?", isOn: $isUNHStudent)
                 .padding()
@@ -64,18 +68,54 @@ struct ProfileSetup: View {
                 .background(Color.white)
                 .cornerRadius(20)
             }
+
             
-            Button(action: {
-                print("Button Press")
-            }) {
-                Text("Create Account")
+            Button("Create Account") {
+                createUser { success in
+                    print("Created:", success)
+                    print("Button pressed")
+                }
             }
+
         }
+    }
+    
+    /* Creates user */
+    func createUser(completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "http://127.0.0.1:3000/createUser") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let body: [String: Any] = [
+            "email": userData.user.email,
+            "first": firstName,
+            "last": lastName,
+            "gender": gender,
+            "age": age,
+            "isUNHStudent": isUNHStudent,
+            "mobile_or_stationengine": isMobile,
+            "dateCreated": Date().description
+        ]
+        
+        print(body)
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let http = response as? HTTPURLResponse {
+                completion(http.statusCode == 200)   
+            } else {
+                completion(false)
+            }
+        } .resume()
     }
 }
 
 #Preview {
-    ProfileSetup()
+    ProfileSetup().environmentObject(UserData())
 }
 
-/* Create a function that sends JSON data of the state variables after pressing create account */
+

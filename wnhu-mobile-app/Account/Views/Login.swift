@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-/* Make this the first page to the app -> Verify user and login */
 
+/* Make this the first page to the app -> Verify user and login */
 struct Login: View {
     @EnvironmentObject var auth: AuthViewModel
     @EnvironmentObject var appVariables: AppVariables
@@ -20,9 +20,6 @@ struct Login: View {
                     auth.signIn(appVariables: appVariables, userData: userData)
         }) {
             Text("Sign in with Microsoft")
-            /* I need to add a database check here, where if the user does not have an entry in our database, it will go to the profile setup page */
-            
-
             }
         }
     }
@@ -32,4 +29,3 @@ struct Login: View {
     Login()
 }
 
-/* Function to check user exists */
