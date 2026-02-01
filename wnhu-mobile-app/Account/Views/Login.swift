@@ -15,7 +15,7 @@ struct Login: View {
     
     var body: some View {
         VStack {
-            Text("Login to WNHU 88.4")
+            Text("")
                 Button(action: {
                     auth.signIn(appVariables: appVariables, userData: userData)
         }) {
@@ -27,6 +27,7 @@ struct Login: View {
             }) {
                 Text("Sign in as Guest")
             }
+            .padding(.top, 10)
         }
     }
 }
