@@ -97,12 +97,6 @@ struct Account: View {
                     .font(.system(size: 22))
                     .padding(.bottom, 4)
 
-                Text("Change username")
-                    .font(.system(size: 16))
-
-                Text("Change password")
-                    .font(.system(size: 16))
-
                 Text("Logout")
                     .font(.system(size: 16))
                     .foregroundColor(.red.opacity(0.8))
