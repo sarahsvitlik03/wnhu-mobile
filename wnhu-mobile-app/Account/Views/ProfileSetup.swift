@@ -20,54 +20,81 @@ struct ProfileSetup: View {
     
     var body: some View {
         VStack {
-            Text("Create Your Profile")
+            Text("Setup Your WNHU Profile")
+                .foregroundStyle(.primary)
             
             Divider()
                 .frame(height: 1)
-                .background(Color.black.opacity(0.3))
+                .background(Color.secondary.opacity(0.3))
                 .padding(.horizontal, 40)
                 .padding(.bottom, 20)
             
             TextField("First Name", text: $firstName)
                 .padding()
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(20)
                 .textInputAutocapitalization(.never)
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 40)
+                .padding(.bottom, 20)
             
             TextField("Last Name", text: $lastName)
                 .padding()
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(20)
                 .textInputAutocapitalization(.never)
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 40)
+                .padding(.bottom, 20)
             
-            Toggle("UNH Student?", isOn: $isUNHStudent)
+            Toggle("UNH Student", isOn: $isUNHStudent)
+                .foregroundStyle(.primary)
                 .padding()
-                .background(Color.white)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(20)
+                .padding(.horizontal, 40)
+                .padding(.bottom, 20)
+            
             HStack {
-                Text("Gender: ")
+                Text("Gender:")
+                    .frame(width: 100, alignment: .leading)
+                    .foregroundStyle(.secondary)
                 Picker("Gender", selection: $gender ) {
                     Text("Male").tag( "Male" )
                     Text("Female").tag( "Female" )
                     Text("Rather not say").tag( "Rather not say")
                 }
                 .pickerStyle(.menu)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(20)
+                .foregroundStyle(.primary)
+                Spacer()
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(20)
+            .padding(.horizontal, 40)
+            .padding(.bottom, 20)
+            
             HStack {
                 Text("Age:")
+                    .frame(width: 100, alignment: .leading)
+                    .foregroundStyle(.secondary)
                 Picker("Age", selection: $age) {
                     ForEach(13...100, id: \.self) { number in
                         Text("\(number)").tag(number)
                     }
                 }
                 .pickerStyle(.menu)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(20)
+                .foregroundStyle(.primary)
+                Spacer()
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(20)
+            .padding(.horizontal, 40)
+            .padding(.bottom, 40)
+
 
             
             Button("Create Account") {
@@ -78,6 +105,8 @@ struct ProfileSetup: View {
             }
 
         }
+        .tint(.red)
+        .background(Color(.systemBackground))
     }
     
     /* Creates user */
@@ -117,5 +146,4 @@ struct ProfileSetup: View {
 #Preview {
     ProfileSetup().environmentObject(UserData())
 }
-
 

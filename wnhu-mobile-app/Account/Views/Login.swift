@@ -21,6 +21,12 @@ struct Login: View {
         }) {
             Text("Sign in with Microsoft")
             }
+            
+            Button( action: {
+                // Action Here
+            }) {
+                Text("Sign in as Guest")
+            }
         }
     }
 }
