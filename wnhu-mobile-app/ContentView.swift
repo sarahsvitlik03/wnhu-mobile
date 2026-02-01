@@ -12,6 +12,7 @@ class AppVariables: ObservableObject {
     @Published var isLoggedIn: Bool = false
     @Published var showLoginPage: Bool = true
     @Published var showProfileSetup: Bool = false
+    @Published var isGuest: Bool = false
 }
 
 struct ContentView: View {
@@ -19,7 +20,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            if appVariables.isLoggedIn { // If logged in == true then show
+            if appVariables.isLoggedIn || appVariables.isGuest{ // If logged in == true then show
                 BottomBar(
                     AnyView(Stream()),
                     AnyView(Account())

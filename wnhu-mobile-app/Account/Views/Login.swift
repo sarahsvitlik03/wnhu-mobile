@@ -23,7 +23,7 @@ struct Login: View {
             }
             
             Button( action: {
-                // Action Here
+                appVariables.isGuest = true
             }) {
                 Text("Sign in as Guest")
             }

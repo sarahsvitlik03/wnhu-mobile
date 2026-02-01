@@ -13,6 +13,13 @@ class RadioPlayer: ObservableObject {
     private var player: AVPlayer?
     
     func startMP3() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Audio session error: \(error)")
+        }
+
         if let url = Bundle.main.url(forResource: "Heavy", withExtension: "mp3") {
             player = AVPlayer(url: url)
             player?.play()

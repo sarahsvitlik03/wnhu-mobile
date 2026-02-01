@@ -13,7 +13,8 @@ struct wnhu_mobile_appApp: App {
     @StateObject var songData = SongData()
     @StateObject var userData = UserData()
     @StateObject var auth = AuthViewModel()
-    
+    @StateObject var player = RadioPlayer()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -22,6 +23,7 @@ struct wnhu_mobile_appApp: App {
                 .preferredColorScheme(.dark)
                 .environmentObject(userData)
                 .environmentObject(auth)
+                .environmentObject(player)
         }
     }
 }

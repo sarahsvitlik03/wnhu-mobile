@@ -15,7 +15,8 @@ struct Stream: View {
     @State private var isInfoShowing = false
     @EnvironmentObject var songData: SongData
     @StateObject private var radio = RadioPlayer() //for pause/play buttons
-
+    @EnvironmentObject var player: RadioPlayer
+    
     var body: some View {
         VStack {
             VStack {
@@ -106,10 +107,10 @@ struct Stream: View {
                     Button(action: {
                         isPlaying.toggle()
                         if isPlaying == true {
-                            radio.startMP3()
+                            player.startMP3()
                         }
                         else {
-                            radio.pause()
+                            player.pause()
                         }
                         
                         print("stream starting")
