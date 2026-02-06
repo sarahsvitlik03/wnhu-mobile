@@ -118,20 +118,5 @@ struct Account: View {
         .environmentObject(UserData())
 }
 
-
-/* Notes for next time
- *
- *   Circle at the top with picture of a person, name + unh email
- *   Make json data to pull from
- *   Have name, email, again
- *   Have liked songs be a pop up
- *   Account settings section
- *       Change name
- *       Change password
- *       Log out
- *
- *
  
- */
-
 
