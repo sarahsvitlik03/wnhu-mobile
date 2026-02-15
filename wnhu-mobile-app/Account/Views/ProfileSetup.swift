@@ -14,6 +14,7 @@ struct ProfileSetup: View {
     @State var age: Int = 0
     @State var gender: String = ""
     @State var isMobile: Bool = true
+    @State var isAdmin: Bool = false
     @EnvironmentObject var userData: UserData
     @State private var navigateToStream = false
 
@@ -94,8 +95,6 @@ struct ProfileSetup: View {
             .cornerRadius(20)
             .padding(.horizontal, 40)
             .padding(.bottom, 40)
-
-
             
             Button("Create Account") {
                 createUser { success in
@@ -125,7 +124,8 @@ struct ProfileSetup: View {
             "gender": gender,
             "age": age,
             "isUNHStudent": isUNHStudent,
-            "mobile_or_stationengine": isMobile,
+            "mobile_or_web": isMobile,
+            "is_admin": isAdmin,
             "dateCreated": Date().description
         ]
         
