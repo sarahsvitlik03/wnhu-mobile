@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Account: View {
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var appVariables: AppVariables
 
     var fullName: String { "\(userData.user.firstName) \(userData.user.lastName)" }
     
@@ -97,9 +98,11 @@ struct Account: View {
                     .font(.system(size: 22))
                     .padding(.bottom, 4)
 
-                Text("Logout")
-                    .font(.system(size: 16))
-                    .foregroundColor(.red.opacity(0.8))
+                Button("Logout") {
+                    logout()
+                }
+                .foregroundColor(.red.opacity(0.8))
+                .font(.system(size: 16))
             }
             .padding(.horizontal, 25)
             .padding(.vertical, 20)
@@ -111,12 +114,36 @@ struct Account: View {
 
         } .padding(.bottom, 100)
     }
+    
+    private func logout() {
+        guard let url = URL(string: "http://127.0.0.1:3000/logoutMobile") else {
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{}".data(using: .utf8)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Logout failed: \(error.localizedDescription)")
+                return
+            }
+            DispatchQueue.main.async {
+                appVariables.isLoggedIn = false
+                appVariables.showLoginPage = true
+                userData.user.firstName = ""
+                userData.user.lastName = ""
+                userData.user.email = ""
+            }
+        }.resume()
+    }
 }
 
 #Preview {
     Account()
         .environmentObject(UserData())
+        .environmentObject(AppVariables())
 }
-
- 
 
