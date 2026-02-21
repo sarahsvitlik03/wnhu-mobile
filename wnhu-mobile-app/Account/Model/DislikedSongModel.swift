@@ -7,12 +7,9 @@
 
 import SwiftUI
 
-struct DislikedSongModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    DislikedSongModel()
+struct DislikedSongModel: Identifiable {
+    let id: UUID = UUID()
+    // disliked song
+    var songName: String
+    var artistName: String
 }

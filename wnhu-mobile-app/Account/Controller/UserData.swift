@@ -16,3 +16,5 @@ class UserData: ObservableObject {
         LikedSongModel(songName: "Bluebird", artistName: "Lana Del Rey")
     ]
 }
+
+/* Update UserData to be pulled from the database*/

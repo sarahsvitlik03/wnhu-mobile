@@ -16,6 +16,7 @@ struct Stream: View {
     @EnvironmentObject var songData: SongData
     @StateObject private var radio = RadioPlayer() //for pause/play buttons
     @EnvironmentObject var player: RadioPlayer
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         VStack {
@@ -83,6 +84,7 @@ struct Stream: View {
                     
                     // Thumbs Down Button
                     Button(action: {
+                        addDislikedSong()
                         isThumbsDown.toggle()
                         if isThumbsUp {
                             isThumbsUp.toggle()
@@ -133,7 +135,10 @@ struct Stream: View {
                     
                     //Thumbs Up Button
                     Button(action: {
-                        isThumbsUp.toggle()
+                        addLikedSong()
+                        // Toggle the thumbs up button
+                         isThumbsUp.toggle()
+                        // If the user disliked the song, toggle again
                         if isThumbsDown {
                             isThumbsDown.toggle()
                         }
@@ -162,7 +167,59 @@ struct Stream: View {
             await songData.updateFromAPI()
         }
     }
+    func addLikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
+        guard let url = URL(string: "http://127.0.0.1:3000/likedSong") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let body: [String: Any] = [
+            "title": songData.song.song, //title
+            "artist": songData.song.artist,
+            "email": userData.user.email
+        ]
+        
+        print(body)
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
 
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let http = response as? HTTPURLResponse {
+                completion(http.statusCode == 200)
+            } else {
+                completion(false)
+            }
+        } .resume()
+      }
+    
+    func addDislikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
+        guard let url = URL(string: "http://127.0.0.1:3000/dislikedSong") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let body: [String: Any] = [
+            "title": songData.song.song, //title
+            "artist": songData.song.artist,
+            "email": userData.user.email
+        ]
+        
+        print(body)
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let http = response as? HTTPURLResponse {
+                completion(http.statusCode == 200)
+            } else {
+                completion(false)
+            }
+        } .resume()
+      }
 }
 
 #Preview {
