@@ -110,7 +110,7 @@ struct ProfileSetup: View {
     
     /* Creates user */
     func createUser(completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:3000/createUserMobile") else { return }
+        guard let url = URL(string: "http://localhost:8000/createUserMobile") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

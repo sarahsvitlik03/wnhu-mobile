@@ -44,7 +44,7 @@ class AuthViewModel: ObservableObject {
     
     /* Checks backend if the user already exists*/
     func checkIfUserExists (email: String, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://127.0.0.1:3000/checkUser") else { return }
+        guard let url = URL(string: "http://localhost:8000/checkUser") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

@@ -116,7 +116,7 @@ struct Account: View {
     }
     
     private func logout() {
-        guard let url = URL(string: "http://127.0.0.1:3000/logoutMobile") else {
+        guard let url = URL(string: "http://localhost:8000/logoutMobile") else {
             return
         }
 
