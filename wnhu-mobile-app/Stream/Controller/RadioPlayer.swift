@@ -29,14 +29,24 @@ class RadioPlayer: ObservableObject {
         }
     }
     
-    /*  Use Later for Icecast stream
-    func startStream () {
-        guard let url = URL(string: "icecast-stream-here") else {return}
-        player = AVPlayer (url: url)
+    func startStream() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Audio session error: \(error)")
+        }
+
+        guard let url = URL(string: "https://wnhu-stream1.newhaven.edu:8051/wnhu") else {
+            print("Invalid stream URL")
+            return
+        }
+
+        player = AVPlayer(url: url)
         player?.play()
         isPlaying = true
-        }  */
-    
+    }
+
     func pause() {
         player?.pause()
         isPlaying = false

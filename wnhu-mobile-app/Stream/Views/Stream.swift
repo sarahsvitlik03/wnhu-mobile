@@ -109,7 +109,7 @@ struct Stream: View {
                     Button(action: {
                         isPlaying.toggle()
                         if isPlaying == true {
-                            player.startMP3()
+                            player.startStream()
                         }
                         else {
                             player.pause()

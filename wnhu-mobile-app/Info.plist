@@ -6,6 +6,12 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>wnhu-stream1.newhaven.edu</key>
+			<dict/>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSExceptionAllowInsecureHTTPLoads</key>
+			<true/>
 			<key>stationengine.citlab.org</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
