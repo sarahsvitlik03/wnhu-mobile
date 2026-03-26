@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Stream: View {
     
-    @State private var isPlaying = true
+    @State private var isPlaying = false
     @State private var isThumbsUp = false
     @State private var isThumbsDown = false
     @State private var isInfoShowing = false
@@ -117,7 +117,7 @@ struct Stream: View {
                         
                         print("stream starting")
                      }) {
-                        Image(systemName: isPlaying ? "play.circle" : "pause.circle")
+                        Image(systemName: isPlaying ? "pause.circle" : "play.circle")
                             .font(.system(size: 70))
                             .foregroundStyle(
                                 LinearGradient(
@@ -226,3 +226,4 @@ struct Stream: View {
     Stream()
         .environmentObject(SongData())
 }
+
