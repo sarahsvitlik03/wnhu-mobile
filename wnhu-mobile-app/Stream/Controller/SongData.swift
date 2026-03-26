@@ -32,5 +32,33 @@ class SongData: ObservableObject {
             print("API error:", error)
         }
     }
+    
+    func updateFromIcecast() async {
+           do {
+               let raw = try await IcecastService.fetchCurrentTrack()
+               let parsed = parseTrack(raw)
+               self.song = SongModel(
+                   song: parsed.title,
+                   artist: parsed.artist,
+                   album: self.song.album,
+                   genre: self.song.genre,
+                   releaseDate: self.song.releaseDate,
+                   duration: self.song.duration,
+                   imageURL: self.song.imageURL
+               )
+               await updateFromAPI()
+           } catch {
+               print("Icecast error:", error)
+           }
+       }
 
-}
+       func startAutoRefresh() {
+           Task {
+               while true {
+                   await updateFromIcecast()
+                   try? await Task.sleep(nanoseconds: 15_000_000_000)
+               }
+           }
+       }
+   }
+

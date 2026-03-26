@@ -164,7 +164,7 @@ struct Stream: View {
             }
         }
         .task { //update song data for each new song
-            await songData.updateFromAPI()
+            await songData.startAutoRefresh()
         }
     }
     func addLikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
