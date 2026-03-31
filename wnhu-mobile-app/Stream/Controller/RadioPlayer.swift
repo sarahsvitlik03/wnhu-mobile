@@ -37,7 +37,7 @@ class RadioPlayer: ObservableObject {
             print("Audio session error: \(error)")
         }
 
-        guard let url = URL(string: "https://wnhu-stream1.newhaven.edu:8051/wnhu") else {
+        guard let url = URL(string: "https://wnhu-stream1.newhaven.edu:8051/stationengine") else {
             print("Invalid stream URL")
             return
         }

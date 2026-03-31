@@ -25,7 +25,7 @@ enum IcecastService {
         let (data, _) = try await URLSession.shared.data(from: url)
         let decoded = try JSONDecoder().decode(IcecastModeL.self, from: data)
         
-        guard let spl = decoded.icestats.source.first(where: { $0.server_name == "WNHU-SPL" }) else {
+        guard let spl = decoded.icestats.source.first(where: { $0.server_name == "WNHU Station Engine" }) else {
             throw NSError(domain: "Icecast", code: 0)
         }
 
