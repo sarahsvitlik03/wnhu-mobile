@@ -10,9 +10,9 @@ import SwiftUI
 class AppVariables: ObservableObject {
     @Published var selectedTab: Int = 0
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("isGuest") var isGuest: Bool = false
     @Published var showLoginPage: Bool = true
     @Published var showProfileSetup: Bool = false
-    @Published var isGuest: Bool = false
 }
 
 struct ContentView: View {
