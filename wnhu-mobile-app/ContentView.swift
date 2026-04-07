@@ -9,7 +9,7 @@ import SwiftUI
 
 class AppVariables: ObservableObject {
     @Published var selectedTab: Int = 0
-    @Published var isLoggedIn: Bool = false
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     @Published var showLoginPage: Bool = true
     @Published var showProfileSetup: Bool = false
     @Published var isGuest: Bool = false
@@ -42,3 +42,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environmentObject(AppVariables())
     }
 }
+
+// I need to make sure the save state is saved
