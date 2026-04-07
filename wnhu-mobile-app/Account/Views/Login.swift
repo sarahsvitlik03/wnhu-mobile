@@ -7,14 +7,21 @@
 
 import SwiftUI
 
-/* Make this the first page to the app -> Verify user and login */
 struct Login: View {
     @EnvironmentObject var auth: AuthViewModel
     @EnvironmentObject var appVariables: AppVariables
     @EnvironmentObject var userData: UserData
     
     var body: some View {
+        
         VStack {
+            Image("wnhu")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100)
+                .shadow(radius: 8)
+                .padding(.bottom, 20)
+            
             Text("")
                 Button(action: {
                     auth.signIn(appVariables: appVariables, userData: userData)
@@ -27,7 +34,7 @@ struct Login: View {
             }) {
                 Text("Sign in as Guest")
             }
-            .padding(.top, 10)
+            .padding(.top, 20)
         }
     }
 }
