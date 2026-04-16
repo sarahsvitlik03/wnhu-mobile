@@ -18,6 +18,10 @@ struct Account: View {
         return "\(userData.user.firstName) \(userData.user.lastName)"
     }
     
+    var isLoggedIn: Bool {
+        return appVariables.isLoggedIn && !appVariables.isGuest
+    }
+    
     @State private var isPopoverShowing = false 
     
     var body: some View {
@@ -103,8 +107,12 @@ struct Account: View {
                     .font(.system(size: 22))
                     .padding(.bottom, 4)
 
-                Button("Logout") {
-                    logout()
+                Button(isLoggedIn ? "Logout" : "Login") {
+                    if isLoggedIn {
+                        logout()
+                    } else {
+                        appVariables.showLoginPage = true
+                    }
                 }
                 .foregroundColor(.red.opacity(0.8))
                 .font(.system(size: 16))
