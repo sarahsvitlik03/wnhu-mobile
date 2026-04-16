@@ -94,6 +94,11 @@ struct Account: View {
                             )
                         }
                     }
+                    .onAppear {
+                        if !userData.user.email.isEmpty {
+                            userData.fetchLikedSongs()
+                        }
+                    }
                 }
                 .frame(maxWidth: 350, maxHeight: 100, alignment: .leading)
                 .background(
@@ -129,6 +134,11 @@ struct Account: View {
             )
 
         } .padding(.bottom, 100)
+        .onAppear {
+            if !userData.user.email.isEmpty {
+                userData.fetchLikedSongs()
+            }
+        }
     }
     
     private func logout() {

@@ -30,6 +30,8 @@ class AuthViewModel: ObservableObject {
                                 appVariables.isLoggedIn = true
                                 appVariables.showLoginPage = false
                                 appVariables.showProfileSetup = false
+                                // Fetch user's liked songs
+                                userData.fetchLikedSongs()
                             } else {
                                 appVariables.isGuest = false
                                 appVariables.showProfileSetup = true
