@@ -9,9 +9,13 @@ class UserData: ObservableObject {
     )
     
     @Published var songs: [LikedSongModel] = []
+    private var isFetchingSongs = false
     
     func fetchLikedSongs() {
+        guard !isFetchingSongs else { return }
         guard !user.email.isEmpty else { return }
+        
+        isFetchingSongs = true
         
         guard let url = URL(string: "http://localhost:8000/pullLikedSongs") else { return }
         
@@ -51,9 +55,13 @@ class UserData: ObservableObject {
 
                 DispatchQueue.main.async {
                     self.songs = likedSongs
+                    self.isFetchingSongs = false
                 }
             } catch {
                 print("Error parsing liked songs: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.isFetchingSongs = false
+                }
             }
         }.resume()
     }

@@ -150,11 +150,6 @@ struct Account: View {
             )
 
         } .padding(.bottom, 100)
-        .onAppear {
-            if !userData.user.email.isEmpty {
-                userData.fetchLikedSongs()
-            }
-        }
     }
     
     private func logout() {
