@@ -11,7 +11,12 @@ struct Account: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var appVariables: AppVariables
 
-    var fullName: String { "\(userData.user.firstName) \(userData.user.lastName)" }
+    var fullName: String { 
+        if appVariables.isGuest {
+            return "Guest User"
+        }
+        return "\(userData.user.firstName) \(userData.user.lastName)"
+    }
     
     @State private var isPopoverShowing = false 
     
@@ -116,28 +121,29 @@ struct Account: View {
     }
     
     private func logout() {
-        guard let url = URL(string: "http://localhost:8000/logoutMobile") else {
-            return
+        // Clear user data
+        userData.user.firstName = ""
+        userData.user.lastName = ""
+        userData.user.email = ""
+        
+        // Reset app state
+        appVariables.isLoggedIn = false
+        appVariables.isGuest = false
+        appVariables.showLoginPage = true
+        
+        // Optional: Try server logout but don't depend on it
+        if let url = URL(string: "http://localhost:8000/logoutMobile") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = "{}".data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request) { _, _, error in
+                if let error = error {
+                    print("Server logout failed: \(error.localizedDescription)")
+                }
+            }.resume()
         }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{}".data(using: .utf8)
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Logout failed: \(error.localizedDescription)")
-                return
-            }
-            DispatchQueue.main.async {
-                appVariables.isLoggedIn = false
-                appVariables.showLoginPage = true
-                userData.user.firstName = ""
-                userData.user.lastName = ""
-                userData.user.email = ""
-            }
-        }.resume()
     }
 }
 

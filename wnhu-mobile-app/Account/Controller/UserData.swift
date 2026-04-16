@@ -3,9 +3,9 @@ import SwiftUI
 
 class UserData: ObservableObject {
     @Published var user = UserModel (
-        firstName: "Sarah",
-        lastName: "Svitlik",
-        email: "s@unh.newhaven.edu",
+        firstName: "",
+        lastName: "",
+        email: "",
     )
     
     @Published var songs: [LikedSongModel] = [
