@@ -77,21 +77,37 @@ struct Account: View {
                     VStack {
                         Text("Liked Songs")
                             .font(.system(size: 22))
-                        ForEach(userData.songs, id: \.id) { song in
-                            HStack {
-                                Image(systemName: "music.note")
-                                    .padding(.leading, 30 )
-
-                                Text(song.songName)
-                                Text("-")
-                                Text(song.artistName)
+                        
+                        if appVariables.isGuest {
+                            VStack(spacing: 16) {
+                                Image(systemName: "heart.slash")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(.secondary)
+                                
+                                Text("Sign in to save and view your liked songs")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 20)
                             }
-                            .frame(maxWidth: 375, maxHeight: 100, alignment: .leading)
+                            .padding(.vertical, 20)
+                        } else {
+                            ForEach(userData.songs, id: \.id) { song in
+                                HStack {
+                                    Image(systemName: "music.note")
+                                        .padding(.leading, 30 )
 
-                            .background(
-                                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                    .fill(Color.white.opacity(0.06))
-                            )
+                                    Text(song.songName)
+                                    Text("-")
+                                    Text(song.artistName)
+                                }
+                                .frame(maxWidth: 375, maxHeight: 100, alignment: .leading)
+
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .fill(Color.white.opacity(0.06))
+                                )
+                            }
                         }
                     }
                     .onAppear {
