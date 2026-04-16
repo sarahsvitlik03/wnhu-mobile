@@ -111,6 +111,9 @@ struct Account: View {
                     if isLoggedIn {
                         logout()
                     } else {
+                        // Clear guest state and show login page
+                        appVariables.isGuest = false
+                        appVariables.isLoggedIn = false
                         appVariables.showLoginPage = true
                     }
                 }

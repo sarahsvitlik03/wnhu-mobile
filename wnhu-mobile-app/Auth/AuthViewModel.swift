@@ -26,9 +26,12 @@ class AuthViewModel: ObservableObject {
                     self.checkIfUserExists(email: email, completion: { exists in
                         DispatchQueue.main.async {
                             if exists {
+                                appVariables.isGuest = false
                                 appVariables.isLoggedIn = true
                                 appVariables.showLoginPage = false
+                                appVariables.showProfileSetup = false
                             } else {
+                                appVariables.isGuest = false
                                 appVariables.showProfileSetup = true
                                 appVariables.showLoginPage = false
                             }
