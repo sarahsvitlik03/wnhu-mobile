@@ -13,12 +13,10 @@ struct Stream: View {
     @State private var isThumbsUp = false
     @State private var isThumbsDown = false
     @State private var isInfoShowing = false
-    @State private var showSignInAlert = false
     @EnvironmentObject var songData: SongData
     @StateObject private var radio = RadioPlayer() //for pause/play buttons
     @EnvironmentObject var player: RadioPlayer
     @EnvironmentObject var userData: UserData
-    @EnvironmentObject var appVariables: AppVariables
     
     var body: some View {
         VStack {
@@ -86,14 +84,10 @@ struct Stream: View {
                     
                     // Thumbs Down Button
                     Button(action: {
-                        if appVariables.isGuest {
-                            showSignInAlert = true
-                        } else {
-                            addDislikedSong()
-                            isThumbsDown.toggle()
-                            if isThumbsUp {
-                                isThumbsUp.toggle()
-                            }
+                        addDislikedSong()
+                        isThumbsDown.toggle()
+                        if isThumbsUp {
+                            isThumbsUp.toggle()
                         }
                     }) {
                         Image(systemName: isThumbsDown ? "hand.thumbsdown.fill" : "hand.thumbsdown")
@@ -141,16 +135,12 @@ struct Stream: View {
                     
                     //Thumbs Up Button
                     Button(action: {
-                        if appVariables.isGuest {
-                            showSignInAlert = true
-                        } else {
-                            addLikedSong()
-                            // Toggle the thumbs up button
-                             isThumbsUp.toggle()
-                            // If the user disliked the song, toggle again
-                            if isThumbsDown {
-                                isThumbsDown.toggle()
-                            }
+                        addLikedSong()
+                        // Toggle the thumbs up button
+                         isThumbsUp.toggle()
+                        // If the user disliked the song, toggle again
+                        if isThumbsDown {
+                            isThumbsDown.toggle()
                         }
                     }) {
                         Image(systemName: isThumbsUp ? "hand.thumbsup.fill" : "hand.thumbsup")
@@ -175,11 +165,6 @@ struct Stream: View {
         }
         .task { //update song data for each new song
             await songData.startAutoRefresh()
-        }
-        .alert("Sign In Required", isPresented: $showSignInAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("Please sign in to like or dislike songs.")
         }
     }
     func addLikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
@@ -240,7 +225,5 @@ struct Stream: View {
 #Preview {
     Stream()
         .environmentObject(SongData())
-        .environmentObject(AppVariables())
-        .environmentObject(UserData())
 }
 
