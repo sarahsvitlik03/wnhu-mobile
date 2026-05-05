@@ -168,7 +168,7 @@ struct Stream: View {
         }
     }
     func addLikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
-        guard let url = URL(string: "http://localhost:8000/likedSong") else { return }
+        guard let url = URL(string: "https://stationengine.citlab.org/likedSong") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -195,7 +195,7 @@ struct Stream: View {
       }
     
     func addDislikedSong(completion: @escaping (Bool) -> Void = { _ in }) {
-        guard let url = URL(string: "http://localhost:8000/dislikedSong") else { return }
+        guard let url = URL(string: "https://stationengine.citlab.org/dislikedSong") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -226,4 +226,3 @@ struct Stream: View {
     Stream()
         .environmentObject(SongData())
 }
-

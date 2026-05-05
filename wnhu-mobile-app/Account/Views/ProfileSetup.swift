@@ -110,7 +110,7 @@ struct ProfileSetup: View {
     
     /* Creates user */
     func createUser(completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://localhost:8000/createUserMobile") else { return }
+        guard let url = URL(string: "https://stationengine.citlab.org/createUserMobile") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -146,4 +146,3 @@ struct ProfileSetup: View {
 #Preview {
     ProfileSetup().environmentObject(UserData())
 }
-

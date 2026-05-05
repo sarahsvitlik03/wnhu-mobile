@@ -49,7 +49,7 @@ class AuthViewModel: ObservableObject {
     
     /* Checks backend if the user already exists*/
     func checkIfUserExists (email: String, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://localhost:8000/checkUser") else { return }
+        guard let url = URL(string: "https://stationengine.citlab.org/checkUser") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -68,4 +68,3 @@ class AuthViewModel: ObservableObject {
         
     }
 }
-

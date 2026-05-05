@@ -17,7 +17,7 @@ class UserData: ObservableObject {
         
         isFetchingSongs = true
         
-        guard let url = URL(string: "http://localhost:8000/pullLikedSongs") else { return }
+        guard let url = URL(string: "https://stationengine.citlab.org/pullLikedSongs") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -69,4 +69,3 @@ class UserData: ObservableObject {
 
 /* Update UserData to be pulled from the database*/
 // Need to write a route for like and disliked songs 
-

@@ -164,7 +164,7 @@ struct Account: View {
         appVariables.showLoginPage = true
         
         // Optional: Try server logout but don't depend on it
-        if let url = URL(string: "http://localhost:8000/logoutMobile") {
+        if let url = URL(string: "https://stationengine.citlab.org/logoutMobile") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -184,4 +184,3 @@ struct Account: View {
         .environmentObject(UserData())
         .environmentObject(AppVariables())
 }
-
